@@ -1,15 +1,19 @@
 const User = require("../models/User");
 
 exports.signinAction = async (request, response) => {
-  const auth = User.authenticate();
-  const { email, password } = request.body;
-  auth(email, password, (error, result) => {
-    if (!result) {
-      return response.json(error);
-    }
-    request.login(result, () => {});
-    return response.status(200).json(result);
-  });
+  try {
+    const auth = User.authenticate();
+    const { email, password } = request.body;
+    auth(email, password, (error, result) => {
+      if (!result) {
+        return response.json(error);
+      }
+      request.login(result, () => {});
+      return response.status(200).json(result);
+    });
+  } catch (error) {
+    return response.json(error);
+  }
 };
 exports.signupAction = async (request, response) => {
   try {
@@ -27,4 +31,5 @@ exports.updateAction = (request, response) => {};
 
 exports.logout = (request, response) => {
   request.logout();
+  return response.json({ message: "logged out" });
 };

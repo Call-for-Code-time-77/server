@@ -14,6 +14,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: "O email é obrigatório"
+  },
+  cpf: {
+    type: String,
+    required: "O CPF é obrigatório"
+  },
+  crp: {
+    type: String
   }
 });
 
