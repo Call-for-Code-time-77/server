@@ -1,5 +1,6 @@
 const express = require("express");
 const userController = require("./controllers/userController");
+const postController = require("./controllers/postController");
 
 const authMiddleware = require("./middlewares/authMiddleware");
 
@@ -13,6 +14,32 @@ routes.post("/users/signin", userController.signinAction);
 routes.post("/users/signup", userController.signupAction);
 routes.put("/users/update", userController.updateAction);
 routes.get("/users/logout", userController.logout);
+
+routes.post(
+  "/posts/add",
+  authMiddleware.isLogged,
+  authMiddleware.isPatient,
+  postController.add
+);
+
+routes.get(
+  "/posts/view/:id",
+  authMiddleware.isLogged,
+  authMiddleware.isPatient,
+  postController.view
+);
+routes.put(
+  "/posts/edit/:id",
+  authMiddleware.isLogged,
+  authMiddleware.isPatient,
+  postController.edit
+);
+routes.get(
+  "/posts/list",
+  authMiddleware.isLogged,
+  authMiddleware.isPatient,
+  postController.list
+);
 
 routes.get(
   "/users/patient",

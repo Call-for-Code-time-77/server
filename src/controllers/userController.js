@@ -21,7 +21,7 @@ exports.signupAction = async (request, response) => {
       new User(request.body),
       request.body.password
     );
-    return response.status(200).json(newUser);
+    return response.status(201).json(newUser);
   } catch (error) {
     return response.json(error);
   }
