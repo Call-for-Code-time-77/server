@@ -5,6 +5,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 const routes = require("./routes");
+const errorHandler = require("./handlers/errorHandler");
 
 const app = express();
 app.use(cors());
@@ -28,4 +29,5 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(routes);
+app.use(errorHandler.notFound);
 module.exports = app;
