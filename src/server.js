@@ -16,6 +16,7 @@ mongoose.connection.on("error", error => {
 // Load Models
 require("./models/User");
 require("./models/Post");
+require("./models/Therapy");
 require("./models/Watson");
 
 const app = require("./app");

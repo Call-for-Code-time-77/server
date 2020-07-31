@@ -6,7 +6,7 @@ exports.signinAction = async (request, response) => {
     const { email, password } = request.body;
     auth(email, password, (error, result) => {
       if (!result) {
-        return response.json(error);
+        return response.status(404).json(["Not found"]);
       }
       request.login(result, () => {});
       return response.status(200).json(result);

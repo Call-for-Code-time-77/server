@@ -1,6 +1,7 @@
 const express = require("express");
 const userController = require("./controllers/userController");
 const postController = require("./controllers/postController");
+const therapyController = require("./controllers/therapyController");
 const watsonController = require("./controllers/watsonController");
 
 const authMiddleware = require("./middlewares/authMiddleware");
@@ -54,6 +55,26 @@ routes.get(
   authMiddleware.isLogged,
   authMiddleware.isPatient,
   postController.list
+);
+
+routes.post(
+  "/therapies/add",
+  authMiddleware.isLogged,
+  authMiddleware.isPatient,
+  therapyController.add
+);
+
+routes.get(
+  "/therapies/view/:id",
+  authMiddleware.isLogged,
+  authMiddleware.isCRP,
+  therapyController.view
+);
+routes.get(
+  "/therapies/list",
+  authMiddleware.isLogged,
+  authMiddleware.isCRP,
+  therapyController.list
 );
 
 routes.get(

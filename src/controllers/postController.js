@@ -4,6 +4,9 @@ const Post = mongoose.model("Post");
 exports.view = async (request, response) => {
   try {
     const post = await Post.findById(request.params.id).exec();
+    if (!post) {
+      return response.status(404).json(["Not found"]);
+    }
     return response.status(200).json(post);
   } catch (error) {
     return response.json(error.message);

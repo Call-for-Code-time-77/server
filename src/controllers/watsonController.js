@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { post } = require("../routes");
 const Watson = mongoose.model("Watson");
 
 const apiIBM = require("../watson/api");
