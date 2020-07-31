@@ -1,5 +1,3 @@
-const { request, response } = require("express");
-
 const mongoose = require("mongoose");
 const Post = mongoose.model("Post");
 
@@ -21,13 +19,14 @@ exports.list = async (request, response) => {
   }
 };
 
-exports.add = async (request, response) => {
+exports.add = async (request, response, next) => {
   try {
     request.body.author = request.user._id;
     const post = new Post(request.body);
     await post.save();
-
-    return response.status(201).json(post);
+    request.post = post;
+    next();
+    // return response.status(201).json(post);
   } catch (error) {
     return response.json(error.message);
   }

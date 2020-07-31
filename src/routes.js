@@ -1,6 +1,7 @@
 const express = require("express");
 const userController = require("./controllers/userController");
 const postController = require("./controllers/postController");
+const watsonController = require("./controllers/watsonController");
 
 const authMiddleware = require("./middlewares/authMiddleware");
 
@@ -19,7 +20,21 @@ routes.post(
   "/posts/add",
   authMiddleware.isLogged,
   authMiddleware.isPatient,
-  postController.add
+  postController.add,
+  watsonController.add
+);
+
+routes.get(
+  "/watson/view/:id",
+  authMiddleware.isLogged,
+  authMiddleware.isPatient,
+  watsonController.view
+);
+routes.get(
+  "/watson/list",
+  authMiddleware.isLogged,
+  authMiddleware.isPatient,
+  watsonController.list
 );
 
 routes.get(
@@ -28,12 +43,12 @@ routes.get(
   authMiddleware.isPatient,
   postController.view
 );
-routes.put(
-  "/posts/edit/:id",
-  authMiddleware.isLogged,
-  authMiddleware.isPatient,
-  postController.edit
-);
+// routes.put(
+//   "/posts/edit/:id",
+//   authMiddleware.isLogged,
+//   authMiddleware.isPatient,
+//   postController.edit
+// );
 routes.get(
   "/posts/list",
   authMiddleware.isLogged,
