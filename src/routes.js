@@ -76,6 +76,12 @@ routes.get(
   authMiddleware.isCRP,
   therapyController.list
 );
+routes.get(
+  "/therapies/patientlist",
+  authMiddleware.isLogged,
+  authMiddleware.isCRP,
+  therapyController.patientList
+);
 
 routes.get(
   "/users/patient",
