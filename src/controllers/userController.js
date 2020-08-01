@@ -9,7 +9,8 @@ exports.signinAction = async (request, response) => {
         return response.status(404).json(["Not found"]);
       }
       request.login(result, () => {});
-      return response.status(200).json(result);
+      const { salt, ...filter } = result.toObject();
+      return response.status(200).json(filter);
     });
   } catch (error) {
     return response.json(error);
@@ -21,7 +22,8 @@ exports.signupAction = async (request, response) => {
       new User(request.body),
       request.body.password
     );
-    return response.status(201).json(newUser);
+    const { salt, ...filter } = newUser.toObject();
+    return response.status(201).json(filter);
   } catch (error) {
     return response.json(error);
   }

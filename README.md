@@ -14,9 +14,9 @@
 
 ## 🎥 Video
 
-[Video Pitch]()
+[Video Pitch](https://www.youtube.com/watch?v=YpgjQgVpVG8)
 
-[Video Demo]()
+[Video Demo](https://youtu.be/Ckoc7K1TZP8)
 
 ## 📱 Mobile
 
@@ -25,9 +25,13 @@
     <img alt="Psicologo" title="Psicologo" src=".github/Psicologo.png" width="45%" />
 </p>
 
+## ✒️ Protótipo
+
+[Protótipo](https://www.figma.com/file/z50ZGIuFGVZHytldeEnK8v/Call-For-Code?node-id=0%3A1)
+
 ## 📝 Documentação
 
-[doc]()
+[doc](.github/doc.pdf)
 
 ## 🚀 Equipe
 
